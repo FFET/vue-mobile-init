@@ -21,11 +21,22 @@ module.exports = {
         test: /\.js$/,
         loader: "babel-loader"
       },
-      // this will apply to both plain `.css` files
-      // AND `<style>` blocks in `.vue` files
       {
-        test: /\.css$/,
-        use: ["vue-style-loader", "css-loader"]
+        test: /\.less|css$/,
+        use: [
+          "vue-style-loader",
+          "css-loader",
+          {
+            loader: "less-loader",
+            options: {
+              javascriptEnabled: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|svg|jpg|gif|jpeg)$/,
+        use: ["file-loader"]
       }
     ]
   },
@@ -33,8 +44,8 @@ module.exports = {
   resolve: {
     extensions: [".js", ".vue"],
     alias: {
-      vue$: "vue/dist/vue.esm.js"
-      //   "@": resolve("src")
+      vue$: "vue/dist/vue.esm.js",
+      "@": path.join(__dirname, "..", "src")
     }
   },
   plugins: [

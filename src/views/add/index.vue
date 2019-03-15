@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Nav title='新增'></Nav>
+  <Menu />
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/>-->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from '@/components/HelloWorld.vue'
+import Nav from '@/components/Nav'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    Nav
   }
 }
 </script>
@@ -20,8 +24,8 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  font-size:.5rem;
+  // text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

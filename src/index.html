@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>demo</title>
+    <script>
+      function setRootFontSize() {
+        var width = document.documentElement.clientWidth,
+          fontSize;
+        if (width > 750) {
+          width = 750;
+        }
+        fontSize = (width / 750) * 100;
+        document.getElementsByTagName("html")[0].style["font-size"] =
+          fontSize + "px";
+      }
+      setRootFontSize();
+      window.addEventListener(
+        "resize",
+        function() {
+          setRootFontSize();
+        },
+        false
+      );
+    </script>
   </head>
   <body>
     <div id="app"></div>
