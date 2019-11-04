@@ -7,8 +7,9 @@ module.exports = {
     index: "./src/index.js"
   },
   output: {
-    path: __dirname + "/dist",
-    filename: "index_bundle.js"
+    filename: "js/[name].[hash:6].js",
+    chunkFilename: "js/[name].[hash:6].js",
+    path: path.resolve(__dirname, "../dist")
   },
 
   module: {
@@ -35,7 +36,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|svg|jpg|gif|jpeg)$/,
+        test: /\.(png|svg|jpg|gif|jpeg|woff2?|ttf)$/,
         use: ["file-loader"]
       }
     ]
