@@ -1,6 +1,7 @@
 const path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -10,7 +11,6 @@ module.exports = {
     path: __dirname + "/dist",
     filename: "index_bundle.js"
   },
-
   module: {
     rules: [
       {
@@ -50,13 +50,17 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
+    new CopyPlugin([{ from: "src/json/", to: "json/" }]),
     new HtmlWebpackPlugin({
       template: "src/index.html"
     })
   ],
   devServer: {
-    hot: true,
     host: "0.0.0.0",
+    useLocalIp: true,
+    hot: true,
+    hotOnly: true,
+    open: true,
     disableHostCheck: true,
     historyApiFallback: true,
     contentBase: path.join(__dirname, "dist"),
