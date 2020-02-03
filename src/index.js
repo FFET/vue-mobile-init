@@ -4,11 +4,8 @@ import Add from "@/views/add";
 import CalendarView from "@/views/calendar";
 import NotFound from "@/views/notFound";
 import "@/styles/index.less";
-// import { Button } from "vant";
 
-import { Button } from "vant";
-import { Calendar } from "vant";
-import { Cell, CellGroup } from "vant";
+import { Button, Calendar, Cell, CellGroup } from "vant";
 
 import VueRouter from "vue-router";
 

@@ -1,4 +1,4 @@
-# VUE training
+# VUE init
 
 ```
 yarn
