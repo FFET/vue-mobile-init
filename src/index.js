@@ -1,36 +1,55 @@
 import Vue from "vue";
-import Home from "@/views/home";
-import Add from "@/views/add";
-import CalendarView from "@/views/calendar";
+import Home from "@/views/Home";
+import About from "@/views/About";
+import Login from "@/views/Login";
 import NotFound from "@/views/notFound";
 import "@/styles/index.less";
 
-import { Button, Calendar, Cell, CellGroup } from "vant";
-
 import VueRouter from "vue-router";
-
-// 1. Use plugin.
-// This installs <router-view> and <router-link>,
-// and injects $router and $route to all router-enabled child components
 Vue.use(VueRouter);
 
+// vant
+import { Button, Calendar, Cell, CellGroup } from "vant";
 Vue.use(Button);
 Vue.use(Calendar);
 Vue.use(Cell);
 Vue.use(CellGroup);
 
-// 2. Define route components
-// const NotFound = { template: "<div>404</div>" };
-
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: __dirname,
   routes: [
-    { path: "/", component: Home },
-    { path: "/Add", component: Add },
-    { path: "/Calendar", component: CalendarView },
+    { path: "/login", component: Login },
+    {
+      path: "/",
+      meta: {
+        auth: true
+      },
+      component: Home
+    },
+    {
+      path: "/about",
+      meta: {
+        auth: false
+      },
+      component: About
+    },
     { path: "*", component: NotFound }
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  let validator =
+    typeof to.meta.auth == "undefined" || !to.meta.auth || sessionStorage.getItem("token");
+  let result = validator
+    ? {}
+    : {
+        path: "login" // 跳转到命名路由
+        // query: {
+        //   url: to.fullPath // 做一个来源页面，用于登陆成功之后跳转
+        // }
+      };
+  next(result);
 });
 
 Vue.config.productionTip = false;
