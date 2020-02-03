@@ -11,7 +11,6 @@ module.exports = {
     chunkFilename: "js/[name].[hash:6].js",
     path: path.resolve(__dirname, "../dist")
   },
-
   module: {
     rules: [
       {

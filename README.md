@@ -1,1 +1,1 @@
-# VUE training
+# VUE init
