@@ -5,6 +5,9 @@ import Login from "@/views/Login";
 import NotFound from "@/views/notFound";
 import "@/styles/index.less";
 
+// import "Utils/baidutongji";
+// import "Utils/wechat";
+
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
@@ -23,7 +26,7 @@ const router = new VueRouter({
     {
       path: "/",
       meta: {
-        auth: true
+        auth: false
       },
       component: Home
     },

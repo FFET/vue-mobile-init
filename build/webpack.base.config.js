@@ -1,15 +1,23 @@
+/**
+ * @author Jay
+ * @date 2020-2-4
+ * @description webpack base config
+ */
+
+const webpack = require("webpack");
 const path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const CopyPlugin = require("copy-webpack-plugin");
+const ENV = process.env.NODE_ENV || "development";
 
 module.exports = {
+  mode: ENV,
   entry: {
-    index: "./src/index.js"
+    app: "./src/index.js"
   },
   output: {
     path: __dirname + "/dist",
-    filename: "index_bundle.js"
+    filename: "[name].js"
   },
   module: {
     rules: [
@@ -20,51 +28,37 @@ module.exports = {
       {
         test: /\.js$/,
         loader: "babel-loader"
-      },
-      {
-        test: /\.less|css$/,
-        use: [
-          "vue-style-loader",
-          "css-loader",
-          {
-            loader: "less-loader",
-            options: {
-              javascriptEnabled: true
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(png|svg|jpg|gif|jpeg)$/,
-        use: ["file-loader"]
       }
     ]
   },
-
   resolve: {
     extensions: [".js", ".vue"],
     alias: {
       vue$: "vue/dist/vue.esm.js",
-      "@": path.join(__dirname, "..", "src")
+      "@": path.join(__dirname, "..", "src"),
+      "@utils": path.join(__dirname, "..", "src/utils")
     }
   },
   plugins: [
     new VueLoaderPlugin(),
-    new CopyPlugin([{ from: "src/json/", to: "json/" }]),
     new HtmlWebpackPlugin({
-      template: "src/index.html"
+      filename: "index.html",
+      template: "./src/index.html",
+      title: "Demo",
+      // favicon: "./src/static/images/favicon.ico",
+      inject: true,
+      minify: ENV === "production" && {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true,
+        removeEmptyAttributes: true,
+        minifyJS: true
+      }
+    }),
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+      BUILD_ENV: JSON.stringify(process.env.BUILD_ENV),
+      BUILD_VERSION: JSON.stringify(new Date().toString())
     })
-  ],
-  devServer: {
-    host: "0.0.0.0",
-    useLocalIp: true,
-    hot: true,
-    hotOnly: true,
-    open: true,
-    disableHostCheck: true,
-    historyApiFallback: true,
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 9000
-  }
+  ]
 };
