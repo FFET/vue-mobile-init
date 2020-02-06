@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Home from "@/views/Home";
+import App from "./App";
 import About from "@/views/About";
 import Login from "@/views/Login";
 import NotFound from "@/views/notFound";
@@ -59,8 +60,9 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
-  template: `
-    <div id="app">
-      <router-view class="view"></router-view>
-    </div>`
+  render: (h) => h(App)
+  // template: `
+  //   <div id="app">
+  //     <router-view class="view"></router-view>
+  //   </div>`
 }).$mount("#app");

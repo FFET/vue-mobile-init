@@ -1,33 +1,33 @@
 <template>
-  <div id="app">
-    <Header :data="data.statistics" />
-    <Detail :data="data.areaStat" />
-  </div>
+  <transition :name="transitionName">
+    <keep-alive>
+      <router-view class="view"></router-view>
+    </keep-alive>
+  </transition>
 </template>
 
 <script>
-import Header from "./components/Header";
-import Detail from "./components/Detail";
 import request from "@utils/request";
-
 export default {
   name: "app",
-  components: { Header, Detail },
   data() {
     return {
       data: {
         statistics: {},
         areaStat: []
-      }
+      },
+      transitionName: "slide-go"
     };
   },
-  created() {
-    this.fnGetData();
-  },
-  methods: {
-    async fnGetData() {
-      const response = await request.get("https://m.shanghaim.net/napi/pneumonia/query");
-      this.data = response.data.data;
+  watch: {
+    $route(to, from) {
+      console.log(to, from);
+      if (to.meta.index > from.meta.index) {
+        this.transitionName = "slide-go";
+      } else {
+        this.transitionName = "slide-back";
+      }
+      this.nowUrl = to.fullPath;
     }
   }
 };
