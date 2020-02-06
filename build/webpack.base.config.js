@@ -45,7 +45,7 @@ module.exports = {
       filename: "index.html",
       template: "./src/index.html",
       title: "Demo",
-      // favicon: "./src/static/images/favicon.ico",
+      favicon: "./src/assets/images/favicon.ico",
       inject: true,
       minify: ENV === "production" && {
         removeComments: true,
