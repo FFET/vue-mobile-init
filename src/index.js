@@ -6,8 +6,8 @@ import Login from "@/views/Login";
 import NotFound from "@/views/notFound";
 import "@/styles/index.less";
 
-// import "Utils/baidutongji";
-// import "Utils/wechat";
+// import "@utils/baidutongji";
+// import "@utils/wechat";
 
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
@@ -66,3 +66,12 @@ new Vue({
   //     <router-view class="view"></router-view>
   //   </div>`
 }).$mount("#app");
+
+import eruda from "eruda";
+// eurda
+let el = document.createElement("div");
+document.body.appendChild(el);
+
+eruda.init({
+  container: el
+});

@@ -56,6 +56,7 @@ export default {
 .header {
   text-align: center;
   padding: 0.2rem;
+  color: #333;
 }
 .number {
   display: flex;
@@ -70,6 +71,8 @@ export default {
   li div:nth-child(1) {
     line-height: 0.5rem;
     height: 0.5rem;
+    color: #f74c31;
+    font-size: 0.33rem;
   }
 }
 </style>

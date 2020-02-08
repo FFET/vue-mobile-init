@@ -27,7 +27,7 @@ export default {
   methods: {
     async fnGetData() {
       const response = await request.get("https://m.shanghaim.net/napi/pneumonia/query");
-      this.data = response.data.data;
+      this.data = response.data;
     }
   }
 };
