@@ -293,6 +293,30 @@ button {
   transform: translateY(-50%) !important;
 }
 
-html {
-  // filter: grayscale(1);
+// html {
+//   // filter: grayscale(1);
+// }
+
+.arrow-left,
+.arrow-down {
+  position: relative;
+}
+
+// arrow
+.arrow-left::before,
+.arrow-down::before {
+  content: " ";
+  position: absolute;
+  top: 0.09rem;
+  left: 0.1rem;
+  width: 0.2rem;
+  height: 0.2rem;
+  display: block;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  transform: rotate(135deg);
+}
+
+.arrow-down::before {
+  transform: rotate(-135deg);
 }

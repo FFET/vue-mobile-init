@@ -8,12 +8,16 @@
     </div>
     <div v-for="(item, i) in data" :key="i">
       <div class="detail-item" @click="fnDisplay(i)">
-        <div>{{ item.provinceShortName }}</div>
+        <div>
+          <div :class="[i !== index ? 'arrow-left' : 'arrow-down']">
+            {{ item.provinceShortName }}
+          </div>
+        </div>
         <div>{{ item.confirmedCount }}</div>
         <div>{{ item.deadCount }}</div>
         <div>{{ item.curedCount }}</div>
       </div>
-      <div v-if="i===index">
+      <div v-if="i === index">
         <div v-for="(subItem, j) in item.cities" :key="j" class="detail-sub-item">
           <div>{{ subItem.cityName }}</div>
           <div>{{ subItem.confirmedCount }}</div>
@@ -80,5 +84,8 @@ export default {
 .detail-item {
   background-color: #f7f7f7;
   border-bottom: 1px solid #eee;
+}
+.detail-sub-item {
+  font-size: 0.3rem;
 }
 </style>
