@@ -4,13 +4,16 @@
       新型冠状病毒 2019-nCoV
       <div :style="{ fontSize: '0.25rem' }">
         截至
-        <span :style="{ width: '1.8rem', display: 'inline-block' }">
+        <span :style="{ width: '2rem', display: 'inline-block' }">
           {{
-          data.modifyTime &&
-          `${new Date(data.modifyTime).getFullYear()}-${new Date(data.modifyTime).getMonth() +
-          1}-${new Date(data.modifyTime).getDate()} ${new Date(
-          data.modifyTime
-          ).getHours()}:${new Date(data.modifyTime).getMinutes()}`
+            data.modifyTime &&
+              `${new Date(data.modifyTime).getFullYear()}-${new Date(data.modifyTime).getMonth() +
+                1}-${new Date(data.modifyTime).getDate()} ${new Date(
+                data.modifyTime
+              ).getHours()}:${new Date(data.modifyTime)
+                .getMinutes()
+                .toString()
+                .padStart(2, "0")}`
           }}
         </span>
         全国数据统计
@@ -19,29 +22,34 @@
     <div>
       <ul class="number">
         <li>
+          <div>较昨日{{ data.currentConfirmedIncr }}</div>
+          <div>{{ data.currentConfirmedCount }}</div>
+          <div>现存确诊</div>
+        </li>
+        <li>
+          <div>较昨日{{ data.confirmedIncr }}</div>
           <div>{{ data.confirmedCount }}</div>
           <div>确诊</div>
-          <div>较昨日+{{ data.confirmedIncr }}</div>
         </li>
         <li>
+          <div>较昨日{{ data.suspectedIncr }}</div>
           <div>{{ data.suspectedCount }}</div>
           <div>疑似</div>
-          <div>较昨日+{{ data.suspectedIncr }}</div>
         </li>
         <li>
+          <div>较昨日{{ data.seriousIncr }}</div>
           <div>{{ data.seriousCount }}</div>
           <div>重症</div>
-          <div>较昨日+{{ data.seriousIncr }}</div>
         </li>
         <li>
+          <div>较昨日{{ data.deadIncr }}</div>
           <div>{{ data.deadCount }}</div>
           <div>死亡</div>
-          <div>较昨日+{{ data.deadIncr }}</div>
         </li>
         <li>
+          <div>较昨日{{ data.curedIncr }}</div>
           <div>{{ data.curedCount }}</div>
           <div>治愈</div>
-          <div>较昨日+{{ data.curedIncr }}</div>
         </li>
       </ul>
     </div>
@@ -71,23 +79,26 @@ export default {
 }
 .number {
   display: flex;
+  flex-wrap: wrap;
   font-size: 0.3rem;
   justify-items: center;
   li {
     list-style-type: none;
-    flex: 1;
+    //flex: 1;
+    width: 33%;
     text-align: center;
+    margin-top: 10px;
   }
 
   li div:nth-child(1) {
     line-height: 0.5rem;
     height: 0.5rem;
-    color: #f74c31;
-    font-size: 0.33rem;
-  }
-  li div:nth-child(3) {
-    color: #d36857;
+    color: #f18887;
     font-size: 0.2rem;
+  }
+  li div:nth-child(2) {
+    color: #d36857;
+    font-size: 0.3rem;
   }
 }
 

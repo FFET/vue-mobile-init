@@ -2,6 +2,7 @@
   <div class="areaStat">
     <div class="detail-header">
       <div>地区</div>
+      <div>现存确诊</div>
       <div>确诊</div>
       <div>死亡</div>
       <div>治愈</div>
@@ -13,6 +14,7 @@
             {{ item.provinceShortName }}
           </div>
         </div>
+        <div>{{ item.currentConfirmedCount }}</div>
         <div>{{ item.confirmedCount }}</div>
         <div>{{ item.deadCount }}</div>
         <div>{{ item.curedCount }}</div>
@@ -20,6 +22,7 @@
       <div v-if="i === index">
         <div v-for="(subItem, j) in item.cities" :key="j" class="detail-sub-item">
           <div>{{ subItem.cityName }}</div>
+          <div>{{ subItem.currentConfirmedCount }}</div>
           <div>{{ subItem.confirmedCount }}</div>
           <div>{{ subItem.deadCount }}</div>
           <div>{{ subItem.curedCount }}</div>
