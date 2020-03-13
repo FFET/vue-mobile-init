@@ -4,7 +4,14 @@
   var n = document.getElementsByTagName("script")[0];
   n.parentNode.insertBefore(s, n);
   s.onload = () => {
-    fetch("https://m.shanghaim.net/fullstack/wechat/wxShare?url=" + location.href, {})
+    // fetch("https://m.shanghaim.net/fullstack/wechat/wxShare?url=" + location.href, {})
+    fetch("https://m.shanghaim.net/fullstack/wechat/wxShare", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({ url: location.href })
+    })
       .then((response) => response.json())
       .then((result) => {
         if (result) {
