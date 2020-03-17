@@ -7,7 +7,8 @@ import NotFound from "@/views/notFound";
 import "@/styles/index.less";
 
 import "@utils/baidutongji";
-import "@utils/wechat";
+// import "@utils/wechat";
+import "@utils/wxUtil";
 
 import VueRouter from "vue-router";
 Vue.use(VueRouter);

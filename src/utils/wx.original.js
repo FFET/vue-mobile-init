@@ -1,4 +1,10 @@
-function wx(o = window, e) {
+!(function(e, n) {
+  "function" == typeof define && (define.amd || define.cmd)
+    ? define(function() {
+        return n(e);
+      })
+    : n(e, !0);
+})(window, function(o, e) {
   if (!o.jWeixin) {
     var n,
       c = {
@@ -844,6 +850,4 @@ function wx(o = window, e) {
         ? e()
         : i.addEventListener && i.addEventListener("WeixinJSBridgeReady", e, !1));
   }
-}
-
-export default new wx();
+});
