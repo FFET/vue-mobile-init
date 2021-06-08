@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     async fnGetData() {
-      const response = await request.get("https://m.shanghaim.net/napi/pneumonia/query");
+      const response = await request.get("https://api.shanghaim.net/pneumonia/query");
       this.data = response.data;
     }
   }

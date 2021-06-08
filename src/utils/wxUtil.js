@@ -4,7 +4,7 @@ import wx from "@utils/wx";
 
 console.log("wx", wx);
 
-fetch("https://m.shanghaim.net/fullstack/wechat/wxShare", {
+fetch("https://api.shanghaim.net/wechat/wxShare", {
   method: "POST",
   headers: {
     "content-type": "application/json"
